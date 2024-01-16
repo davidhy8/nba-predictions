@@ -18,4 +18,3 @@ print("Hi")
 # General outline of project:
 # i) Front-end: Website to display data (NBA team win & loss predictions, top fantasy scorers of the night)
 # ii) Back-end: Machine learning to make predictions, Algorithms to fetch data, NLP to check headlines for injury
-# iii) tidy code
