@@ -2,12 +2,14 @@ import os
 from bs4 import BeautifulSoup
 from playwright.async_api import async_playwright, TimeoutError as PlaywrightTimeout
 import time
+# from asgiref.sync import async_to_sync
+import asyncio
 
-SEASONS = list(range(2017, 2024))
 
 DATA_DIR = "data"
 STANDINGS_DIR = os.path.join(DATA_DIR, "standings")
 SCORES_DIR = os.path.join(DATA_DIR, "scores")
+
 
 # Function to grab html information from the url
 async def get_html(url, selector, sleep=5, retries=3):
@@ -31,6 +33,7 @@ async def get_html(url, selector, sleep=5, retries=3):
 
     return html
 
+
 # Function to scrape season information
 async def scrape_season(season):
     url = f"https://www.basketball-reference.com/leagues/NBA_{season}_games.html"
@@ -46,14 +49,10 @@ async def scrape_season(season):
         if os.path.exists(save_path):
             continue
 
-        html = await get_html(url, "#schedule")
+        html = await get_html(url, "#all_schedule")
         with open(save_path, "w+") as f:
             f.write(html)
 
-for season in SEASONS:
-    await scrape_season(season)
-
-standings_files = os.listdir(STANDINGS_DIR)
 
 # Function to scrape each individual game
 async def scrape_game(standings_file):
@@ -79,8 +78,47 @@ async def scrape_game(standings_file):
             f.write(html)
 
 
-standings_files = [s for s in standings_files if ".html" in s]
+# @async_to_sync
+# async def scrape_season(SEASONS):
+#     for season in SEASONS:
+#         await scrape_season(season)
+#
+#     standings_files = os.listdir(STANDINGS_DIR)
+#
+#     standings_files = [s for s in standings_files if ".html" in s]
+#
+#     for f in standings_files:
+#         filepath = os.path.join(STANDINGS_DIR, f)
+#         await scrape_game(filepath)
+#
+# SEASONS = list(range(2017, 2024))
+#
+# for season in SEASONS:
+#     loop = asyncio.get_event_loop()
+#     loop.run_until_complete(scrape_season(season))
+#     loop.close()
+#
+# standings_files = os.listdir(STANDINGS_DIR)
+# standings_files = [s for s in standings_files if ".html" in s]
+#
+# for f in standings_files:
+#     filepath = os.path.join(STANDINGS_DIR, f)
+#     loop = asyncio.get_event_loop()
+#     loop.run_until_complete(scrape_game(filepath))
+#     loop.close()
 
-for f in standings_files:
-    filepath = os.path.join(STANDINGS_DIR, f)
-    await scrape_game(filepath)
+# scrape_data(list(range(2017, 2024)))
+
+if __name__ == "__main__":
+    # SEASONS = list(range(2021, 2025))
+    asyncio.run(scrape_season(2022))
+    # for season in SEASONS:
+    #     asyncio.run(scrape_season(season))
+
+    # standings_files = os.listdir(STANDINGS_DIR)
+    # standings_files = [s for s in standings_files if ".html" in s]
+    #
+    # for f in standings_files:
+    #     filepath = os.path.join(STANDINGS_DIR, f)
+    #     asyncio.run(scrape_game(filepath))
+
