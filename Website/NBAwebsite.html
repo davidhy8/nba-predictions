@@ -7,6 +7,8 @@
 
 <body>
 
+
+
 <!MAIN PARAGRAPH WITH BUTTON>
 <div class="title">
     <p class= "main_paragraph">
@@ -15,11 +17,13 @@
         <style>
         .main_paragraph{
          position: relative; top: 150px;
-         position: relative; left: -250px;
+         position: relative; left: 0px;
          font-size: 80px;
+         font-weight: bold;
          font-family: garamond;
          text-align: center;
          block-size: auto;
+         color: white;
         }
         </style>
 </div>
@@ -33,8 +37,9 @@
         <style>
             .title_description{
             block-size: auto;
-            position: relative; top: 100px;
-            position: relative; left: 200px;
+            color: white;
+            position: relative; top: 330px;
+            position: absolute; left: 520px;
 
         }
         </style>
@@ -42,14 +47,16 @@
 
 <!BUTTON>
 <div class="start_button_container">
-<button class="start_button">
-    Get started
-</button>
+<a href="Second page.html">
+    <button class="start_button">
+        Get started
+    </button>
+</a>
 </div>
     <style>
     .start_button_container{
     position: relative; top: 150px;
-    position: relative; left: -280px;
+    position: relative; left: 0px;
     text-align: center;
     }
     </style>
@@ -75,36 +82,44 @@
     </style>
 
 
-<!top logo>
-<div class="top_logo_container">
-    <button class="top_logo_button">
-      home button
-    </button>
+
+
+    </style>
+<!video>
+<div class="vid_container">
+    <video class = "vid" autoplay muted loop playsinline>
+       <source  src="webmov.mp4" type="video/mp4">
+
+    </video>
+
+   <style>
+       .vid{
+        position: absolute;
+        width: 1600px;
+        height: 10px;
+        max-width: 100%;
+        min-height: 100%;
+        object-fit: cover;
+        top: 0;
+        z-index: -1;
+
+
+
+}
+        .vid_container{
+       width: 100%;
+       height: 100%;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       background-color: rgba(0,0,0,0,4)
+
+       }
+
+
+   </style>
+
 </div>
-
-
-    <style>
-        .top_logo_container{
-       position: relative; top: -300px;
-       position: relative; left: 50px;
-       }
-
-    </style>
-
-    <style>
-       .top_logo_button{
-        background-color: green;
-        cursor: pointer;
-        }
-
-        .top_logo_button:hover{
-     opacity: 0.8;
-       }
-
-     .top_logo_button:active{
-     opacity: 0.5;
-
-    </style>
 
 
 
