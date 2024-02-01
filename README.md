@@ -8,6 +8,6 @@
 - Back-end: Machine learning to make predictions, Algorithms to fetch data, NLP to check headlines for injury
 
 # Basic Functionality:
-1. Web application to display predictions for NBA team win & loss and top fantasy scorers of the night
-2. Web scraper to grab box score results from basketball-reference.com
-3. Deep learning algorithm to make predictions
+1. Web application: display predictions for NBA team win & loss and top fantasy scorers of the night in a single scrollable page
+2. Web scraper: to grab box score results from basketball-reference.com and an updater that only scrapes the most recent box scores during the start of each day
+3. Prediction: Deep learning algorithm to make predictions and performs hyperparameter tuning if given the argument to do so

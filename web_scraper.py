@@ -12,7 +12,7 @@ SCORES_DIR = os.path.join(DATA_DIR, "scores")
 
 
 # Function to grab html information from the url
-async def get_html(url, selector, sleep=5, retries=3):
+async def get_html(url, selector, sleep=5, retries=5):
     html = None
     for i in range(1, retries + 1):
         time.sleep(sleep * i)
@@ -110,15 +110,15 @@ async def scrape_game(standings_file):
 # scrape_data(list(range(2017, 2024)))
 
 if __name__ == "__main__":
-    # SEASONS = list(range(2021, 2025))
-    asyncio.run(scrape_season(2022))
-    # for season in SEASONS:
-    #     asyncio.run(scrape_season(season))
+    SEASONS = list(range(2021, 2025))
+    # asyncio.run(scrape_season(2024))
+    for season in SEASONS:
+        asyncio.run(scrape_season(season))
 
-    # standings_files = os.listdir(STANDINGS_DIR)
-    # standings_files = [s for s in standings_files if ".html" in s]
+    standings_files = os.listdir(STANDINGS_DIR)
+    standings_files = [s for s in standings_files if ".html" in s]
     #
-    # for f in standings_files:
-    #     filepath = os.path.join(STANDINGS_DIR, f)
-    #     asyncio.run(scrape_game(filepath))
+    for f in standings_files:
+        filepath = os.path.join(STANDINGS_DIR, f)
+        asyncio.run(scrape_game(filepath))
 
